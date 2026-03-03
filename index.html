@@ -5,11 +5,6 @@
     <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>PetoClub</title>
-    <!-- Google Fonts - Inter y Nunito -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
     <!-- The `react-native-web` recommended style reset: https://necolas.github.io/react-native-web/docs/setup/#root-element -->
     <style id="expo-reset">
       /* These styles make the body full-height */
@@ -28,72 +23,7 @@
         flex: 1;
       }
     </style>
-  <link rel="preload" href="/_expo/static/css/leaflet-978b897c6262a1e635a1474d10ba056c.css" as="style"><link rel="stylesheet" href="/_expo/static/css/leaflet-978b897c6262a1e635a1474d10ba056c.css"><link rel="shortcut icon" href="/favicon.ico" />
-    <script>
-      (function() {
-        // Mapeo de fuentes de expo-google-fonts a nombres de Google Fonts
-        const fontMap = {
-          'Inter_400Regular': 'Inter',
-          'Inter_500Medium': 'Inter',
-          'Inter_600SemiBold': 'Inter',
-          'Inter_700Bold': 'Inter',
-          'Nunito_400Regular': 'Nunito',
-          'Nunito_500Medium': 'Nunito',
-          'Nunito_600SemiBold': 'Nunito',
-          'Nunito_700Bold': 'Nunito',
-          'Nunito_800ExtraBold': 'Nunito',
-        };
-
-        // Función para reemplazar fuentes en texto CSS
-        function replaceFontsInCSS(cssText) {
-          let modified = cssText;
-          for (const [oldFont, newFont] of Object.entries(fontMap)) {
-            const regex = new RegExp("'"+oldFont+"'","g");
-            modified = modified.replace(regex, "'"+newFont+"'");
-          }
-          return modified;
-        }
-
-        // Observador para interceptar nuevos elementos <style>
-        const observer = new MutationObserver(function(mutations) {
-          mutations.forEach(function(mutation) {
-            if (mutation.type === 'childList') {
-              mutation.addedNodes.forEach(function(node) {
-                if (node.nodeType === 1) { // Element node
-                  if (node.tagName === 'STYLE' && node.textContent) {
-                    node.textContent = replaceFontsInCSS(node.textContent);
-                  }
-                  // También buscar elementos style dentro del nodo añadido
-                  const styles = node.querySelectorAll?.('style') || [];
-                  styles.forEach(function(style) {
-                    if (style.textContent) {
-                      style.textContent = replaceFontsInCSS(style.textContent);
-                    }
-                  });
-                }
-              });
-            }
-          });
-        });
-
-        // Empezar a observar el documento
-        observer.observe(document.documentElement, {
-          childList: true,
-          subtree: true
-        });
-
-        // Procesar estilos existentes al cargar
-        window.addEventListener('load', function() {
-          const existingStyles = document.querySelectorAll('style');
-          existingStyles.forEach(function(style) {
-            if (style.textContent) {
-              style.textContent = replaceFontsInCSS(style.textContent);
-            }
-          });
-        });
-      })();
-    </script>
-  </head>
+  <link rel="preload" href="/_expo/static/css/leaflet-978b897c6262a1e635a1474d10ba056c.css" as="style"><link rel="stylesheet" href="/_expo/static/css/leaflet-978b897c6262a1e635a1474d10ba056c.css"><link rel="shortcut icon" href="/favicon.ico" /></head>
 
   <body>
     <!-- Use static rendering with Expo Router to support running without JavaScript. -->
@@ -102,6 +32,6 @@
     </noscript>
     <!-- The root element for your Expo app. -->
     <div id="root"></div>
-  <script src="/_expo/static/js/web/entry-e4bfc0a7b8c75fffd7270f326c1f9916.js" defer></script>
+  <script src="/_expo/static/js/web/entry-9dc209acb96b865420ec5c6782d44b4c.js" defer></script>
 </body>
 </html>
