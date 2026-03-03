@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{TITULO}} - PetoClub Red de Ayuda</title>
+    
+    <!-- Meta tags para SEO y redes sociales -->
+    <meta name="description" content="{{DESCRIPCION}}">
+    <meta name="keywords" content="mascota {{TIPO_AVISO}}, {{ESPECIE}}, {{UBICACION}}, PetoClub, red de ayuda">
+    
+    <!-- Open Graph para Facebook -->
+    <meta property="og:title" content="{{TITULO}} - PetoClub">
+    <meta property="og:description" content="{{DESCRIPCION}}">
+    <meta property="og:image" content="{{IMAGEN_URL}}">
+    <meta property="og:url" content="{{URL_ACTUAL}}">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="PetoClub">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{TITULO}} - PetoClub">
+    <meta name="twitter:description" content="{{DESCRIPCION}}">
+    <meta name="twitter:image" content="{{IMAGEN_URL}}">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    
+    <!-- Estilos CSS -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .header {
+            background: linear-gradient(135deg, {{COLOR_PRIMARIO}}, {{COLOR_SECUNDARIO}});
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .tipo-badge {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+        
+        .tipo-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+        }
+        
+        .nombre-mascota {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .especie {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-weight: 500;
+            text-transform: capitalize;
+        }
+        
+        .badges {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .badge {
+            background: rgba(255,188,76,0.9);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .image-gallery {
+            margin-bottom: 30px;
+        }
+        
+        .main-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .thumbnail-gallery {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 5px 0;
+        }
+        
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0.7;
+        }
+        
+        .thumbnail:hover,
+        .thumbnail.active {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+        
+        .info-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .info-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            border-left: 4px solid {{COLOR_PRIMARIO}};
+        }
+        
+        .info-card h3 {
+            color: {{COLOR_PRIMARIO}};
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 1rem;
+        }
+        
+        .info-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 12px;
+            color: #666;
+        }
+        
+        .info-label {
+            font-weight: 600;
+            color: #495057;
+            min-width: 100px;
+        }
+        
+        .info-value {
+            color: #212529;
+        }
+        
+        .description {
+            background: #fff;
+            border: 1px solid #e9ecef;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            font-size: 1.1rem;
+            color: #495057;
+        }
+        
+        .contact-section {
+            background: linear-gradient(135deg, {{COLOR_PRIMARIO}}, {{COLOR_SECUNDARIO}});
+            color: white;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .contact-section h3 {
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+        
+        .contact-info {
+            font-size: 1.2rem;
+            font-weight: 600;
+            background: rgba(255,255,255,0.2);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+        
+        .action-btn {
+            background: {{COLOR_PRIMARIO}};
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .action-btn.secondary {
+            background: #6c757d;
+        }
+        
+        .action-btn.whatsapp {
+            background: #25d366;
+        }
+        
+        .footer {
+            background: #f8f9fa;
+            padding: 30px;
+            text-align: center;
+            border-top: 1px solid #e9ecef;
+        }
+        
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: {{COLOR_PRIMARIO}};
+            margin-bottom: 10px;
+        }
+        
+        .footer-text {
+            color: #6c757d;
+            margin-bottom: 20px;
+        }
+        
+        .download-app {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: {{COLOR_PRIMARIO}};
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .download-app:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .header {
+                padding: 30px 20px;
+            }
+            
+            .nombre-mascota {
+                font-size: 2rem;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .main-image {
+                height: 300px;
+            }
+            
+            .badges {
+                position: static;
+                justify-content: center;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="badges">
+                {{#if destacado}}
+                <div class="badge">
+                    ⭐ Destacado
+                </div>
+                {{/if}}
+                {{#if estado_especial}}
+                <div class="badge">
+                    ✅ {{estado_especial}}
+                </div>
+                {{/if}}
+            </div>
+            
+            <div class="tipo-badge">
+                <span class="tipo-icon">{{TIPO_ICON}}</span>
+                {{TIPO_TEXTO}}
+            </div>
+            
+            <h1 class="nombre-mascota">{{NOMBRE}}</h1>
+            <p class="especie">{{ESPECIE}}</p>
+        </div>
+
+        <!-- Contenido -->
+        <div class="content">
+            <!-- Galería de imágenes -->
+            {{#if imagenes}}
+            <div class="image-gallery">
+                <img src="{{IMAGEN_PRINCIPAL}}" alt="{{NOMBRE}}" class="main-image" id="mainImage">
+                {{#if multiple_images}}
+                <div class="thumbnail-gallery">
+                    {{#each imagenes}}
+                    <img src="{{this}}" alt="{{../NOMBRE}}" class="thumbnail" onclick="changeMainImage('{{this}}')">
+                    {{/each}}
+                </div>
+                {{/if}}
+            </div>
+            {{/if}}
+
+            <!-- Información -->
+            <div class="info-section">
+                <div class="info-card">
+                    <h3>
+                        <span class="info-icon">📍</span>
+                        Información General
+                    </h3>
+                    <div class="info-item">
+                        <span class="info-icon">🐾</span>
+                        <span class="info-label">Especie:</span>
+                        <span class="info-value">{{ESPECIE}}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-icon">📍</span>
+                        <span class="info-label">Ubicación:</span>
+                        <span class="info-value">{{UBICACION}}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-icon">📅</span>
+                        <span class="info-label">Fecha:</span>
+                        <span class="info-value">{{FECHA_FORMATEADA}}</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Descripción -->
+            {{#if descripcion}}
+            <div class="description">
+                <h3 style="margin-bottom: 15px; color: {{COLOR_PRIMARIO}};">
+                    <span class="info-icon">📝</span>
+                    Descripción
+                </h3>
+                <p>{{DESCRIPCION}}</p>
+            </div>
+            {{/if}}
+
+            <!-- Contacto -->
+            <div class="contact-section">
+                <h3>💬 Información de Contacto</h3>
+                <div class="contact-info">
+                    {{CONTACTO}}
+                </div>
+                
+                <div class="actions">
+                    <a href="whatsapp://send?text={{MENSAJE_WHATSAPP}}" class="action-btn whatsapp">
+                        <span>💬</span>
+                        Compartir por WhatsApp
+                    </a>
+                    <button onclick="copyToClipboard()" class="action-btn secondary">
+                        <span>📋</span>
+                        Copiar enlace
+                    </button>
+                    <button onclick="shareNative()" class="action-btn">
+                        <span>📤</span>
+                        Compartir
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-logo">🐾 PetoClub</div>
+            <p class="footer-text">
+                Ayudamos a reunir mascotas con sus familias.<br>
+                Descarga la app para reportar y buscar mascotas.
+            </p>
+            <a href="{{APP_DOWNLOAD_URL}}" class="download-app">
+                <span>📱</span>
+                Descargar PetoClub
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Cambiar imagen principal
+        function changeMainImage(src) {
+            document.getElementById('mainImage').src = src;
+            
+            // Actualizar thumbnails activos
+            document.querySelectorAll('.thumbnail').forEach(thumb => {
+                thumb.classList.remove('active');
+                if (thumb.src === src) {
+                    thumb.classList.add('active');
+                }
+            });
+        }
+
+        // Copiar enlace al portapapeles
+        async function copyToClipboard() {
+            try {
+                await navigator.clipboard.writeText(window.location.href);
+                alert('¡Enlace copiado al portapapeles!');
+            } catch (err) {
+                // Fallback para navegadores más antiguos
+                const textArea = document.createElement('textarea');
+                textArea.value = window.location.href;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                alert('¡Enlace copiado!');
+            }
+        }
+
+        // Compartir nativo
+        async function shareNative() {
+            if (navigator.share) {
+                try {
+                    await navigator.share({
+                        title: '{{TITULO}} - PetoClub',
+                        text: '{{DESCRIPCION}}',
+                        url: window.location.href
+                    });
+                } catch (err) {
+                    copyToClipboard();
+                }
+            } else {
+                copyToClipboard();
+            }
+        }
+
+        // Inicializar primer thumbnail como activo
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstThumbnail = document.querySelector('.thumbnail');
+            if (firstThumbnail) {
+                firstThumbnail.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>
